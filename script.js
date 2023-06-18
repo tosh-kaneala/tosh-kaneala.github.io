@@ -1,61 +1,28 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Smooth scrolling functionality for navigation links
-  const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
-  
-  for (let smoothScrollLink of smoothScrollLinks) {
-    smoothScrollLink.addEventListener('click', function(event) {
-      event.preventDefault();
-      
-      const targetId = this.getAttribute('href').substring(1);
-      const targetElement = document.getElementById(targetId);
-      
-      window.scrollTo({
-        top: targetElement.offsetTop,
-        behavior: 'smooth'
-      });
-    });
-  }
-  
-  // Lazy loading for project images
-  const projectImages = document.querySelectorAll('.project-grid img');
-  
-  const lazyLoad = target => {
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          const src = img.getAttribute('data-src');
-          
-          img.setAttribute('src', src);
-          img.classList.add('fade-in');
-          
-          observer.unobserve(img);
-        }
-      });
-    });
+// Smooth scrolling for anchor links
+const navLinks = document.querySelectorAll('nav a');
+
+navLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
     
-    observer.observe(target);
-  };
-  
-  projectImages.forEach(lazyLoad);
-  
-  // Scroll reveal animation for project overlays
-  const projectOverlays = document.querySelectorAll('.project-overlay');
-  
-  const scrollReveal = target => {
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const overlay = entry.target;
-          overlay.classList.add('reveal');
-          
-          observer.unobserve(overlay);
-        }
-      });
+    window.scrollTo({
+      top: targetSection.offsetTop,
+      behavior: 'smooth'
     });
-    
-    observer.observe(target);
-  };
-  
-  projectOverlays.forEach(scrollReveal);
+  });
 });
+
+// Toggle mobile menu
+const menuBtn = document.querySelector('.menu-btn');
+const nav = document.querySelector('nav');
+
+menuBtn.addEventListener('click', () => {
+  nav.classList.toggle('open');
+});
+
+// Dynamic year in the footer
+const footerYear = document.querySelector('.footer-year');
+const currentYear = new Date().getFullYear();
+footerYear.textContent = currentYear;
