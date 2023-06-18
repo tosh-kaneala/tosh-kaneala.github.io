@@ -103,8 +103,8 @@ function handleLightboxKeydown(event) {
 }
 
 // Particle background
-particlesJS.load('particles-js', 'particles.json', function() {
-  console.log('Particles loaded');
+// particlesJS.load('particles-js', 'particles.json', function() {
+  // console.log('Particles loaded');
 });
 
 // Scroll to top button
