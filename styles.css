@@ -25,18 +25,13 @@ header {
 .logo {
   font-size: 24px;
   font-weight: bold;
-  color: #333;
-}
-
-nav {
-  display: flex;
-  align-items: center;
 }
 
 nav ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 nav li {
@@ -44,8 +39,8 @@ nav li {
 }
 
 nav a {
-  text-decoration: none;
   color: #333;
+  text-decoration: none;
   transition: color 0.3s;
 }
 
@@ -55,29 +50,43 @@ nav a:hover {
 
 /* Hero Section */
 .hero {
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 100px 0;
-  background-color: #f2f2f2;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(background.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
 }
 
 .hero h1 {
   font-size: 48px;
   font-weight: bold;
-  color: #333;
   margin-bottom: 20px;
 }
 
 .hero p {
   font-size: 20px;
-  color: #777;
   margin-bottom: 40px;
 }
 
-/* Project Section */
+.hero .btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.hero .btn:hover {
+  background-color: #777;
+}
+
+/* Projects Section */
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -109,13 +118,11 @@ nav a:hover {
 
 .project h3 {
   font-size: 24px;
-  color: #333;
   margin-bottom: 10px;
 }
 
 .project p {
   font-size: 16px;
-  color: #777;
 }
 
 /* Footer */
@@ -126,6 +133,86 @@ footer {
   color: #fff;
 }
 
-.footer-year {
-  font-size: 14px;
+/* Scroll to Top Button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0s linear 0.3s;
+  cursor: pointer;
 }
+
+.scroll-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+/* Animation */
+.fadeIn-animation {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav li {
+    margin: 10px;
+  }
+
+  .hero {
+    height: 70vh;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero p {
+    font-size: 18px;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Custom Styles */
+/* Add your custom CSS styles here */
