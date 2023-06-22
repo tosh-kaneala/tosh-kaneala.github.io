@@ -1,50 +1,112 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Smooth scrolling on anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
+$(window).load(function () {
+  var height = window.innerHeight,
+    x = 0,
+    y = height / 2,
+    curveX = 10,
+    curveY = 0,
+    targetX = 0,
+    xitteration = 0,
+    yitteration = 0,
+    menuExpanded = false;
 
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        window.scrollTo({
-          top: target.offsetTop,
-          behavior: 'smooth'
-        });
-      }
-    });
+  (blob = $("#blob")),
+    (blobPath = $("#blob-path")),
+    (hamburger = $(".hamburger"));
+
+  $(this).on("mousemove", function (e) {
+    x = e.pageX;
+
+    y = e.pageY;
   });
 
-  // Intersection Observer for fade-in animation
-  const sections = document.querySelectorAll('.section');
-
-  const sectionObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('fadeIn-animation');
-        observer.unobserve(entry.target);
-      }
-    });
+  $(".hamburger, .menu-inner").on("mouseenter", function () {
+    $(this).parent().addClass("expanded");
+    menuExpanded = true;
   });
 
-  sections.forEach(section => {
-    sectionObserver.observe(section);
+  $(".menu-inner").on("mouseleave", function () {
+    menuExpanded = false;
+    $(this).parent().removeClass("expanded");
   });
 
-  // Scroll to top button
-  const scrollToTopButton = document.querySelector('.scroll-to-top');
+  function easeOutExpo(
+    currentIteration,
+    startValue,
+    changeInValue,
+    totalIterations
+  ) {
+    return (
+      changeInValue *
+        (-Math.pow(2, (-10 * currentIteration) / totalIterations) + 1) +
+      startValue
+    );
+  }
 
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-      scrollToTopButton.classList.add('show');
+  var hoverZone = 150;
+  var expandAmount = 20;
+
+  function svgCurve() {
+    if (curveX > x - 1 && curveX < x + 1) {
+      xitteration = 0;
     } else {
-      scrollToTopButton.classList.remove('show');
+      if (menuExpanded) {
+        targetX = 0;
+      } else {
+        xitteration = 0;
+        if (x > hoverZone) {
+          targetX = 0;
+        } else {
+          targetX = -(((60 + expandAmount) / 100) * (x - hoverZone));
+        }
+      }
+      xitteration++;
     }
-  });
 
-  scrollToTopButton.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
+    if (curveY > y - 1 && curveY < y + 1) {
+      yitteration = 0;
+    } else {
+      yitteration = 0;
+      yitteration++;
+    }
+
+    curveX = easeOutExpo(xitteration, curveX, targetX - curveX, 100);
+    curveY = easeOutExpo(yitteration, curveY, y - curveY, 100);
+
+    var anchorDistance = 200;
+    var curviness = anchorDistance - 40;
+
+    var newCurve2 =
+      "M60," +
+      height +
+      "H0V0h60v" +
+      (curveY - anchorDistance) +
+      "c0," +
+      curviness +
+      "," +
+      curveX +
+      "," +
+      curviness +
+      "," +
+      curveX +
+      "," +
+      anchorDistance +
+      "S60," +
+      curveY +
+      ",60," +
+      (curveY + anchorDistance * 2) +
+      "V" +
+      height +
+      "z";
+
+    blobPath.attr("d", newCurve2);
+
+    blob.width(curveX + 60);
+
+    hamburger.css("transform", "translate(" + curveX + "px, " + curveY + "px)");
+
+    $("h2").css("transform", "translateY(" + curveY + "px)");
+    window.requestAnimationFrame(svgCurve);
+  }
+
+  window.requestAnimationFrame(svgCurve);
 });

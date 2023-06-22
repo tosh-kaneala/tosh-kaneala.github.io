@@ -1,68 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
-  <title>My Personal Website</title>
+  <title>CodePen - SVG Gooey Hover Menu Concept</title>
+  <link rel="stylesheet" href="./style.css">
+
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1 class="logo">My Personal Website</h1>
-      <nav>
-        <ul>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<!-- partial:index.partial.html -->
+<div id="menu">
+  <div class="hamburger">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
 
-  <section class="hero">
-    <div class="container">
-      <h1>Welcome to My Website</h1>
-      <p>Explore my engineering projects and learn more about my skills and experience.</p>
-      <a href="#projects" class="btn">View Projects</a>
-    </div>
-  </section>
+  <div class="menu-inner">
 
-  <section id="projects" class="projects">
-    <div class="container">
-      <div class="project">
-        <img src="project1.jpg" alt="Project 1">
-        <h3>Project 1</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
-      <div class="project">
-        <img src="project2.jpg" alt="Project 2">
-        <h3>Project 2</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
-      <div class="project">
-        <img src="project3.jpg" alt="Project 3">
-        <h3>Project 3</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
-      <div class="project">
-        <img src="project4.jpg" alt="Project 4">
-        <h3>Project 4</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
-      <div class="project">
-        <img src="project5.jpg" alt="Project 5">
-        <h3>Project 5</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
-    </div>
-  </section>
+    <ul>
+      <li> <a style="text-decoration: none;" href="#About">
+          <div class="link"> <b> About </b> </div>
+        </a> </li>
+      <li> <a style="text-decoration: none;" href="#Education">
+          <div class="link"> <b> Education </b> </div>
+        </a> </li>
+      <li> <a style="text-decoration: none;" href="#Publications">
+          <div class="link"> <b> Publications and Research </b> </div>
+        </a> </li>
+      <li> <a style="text-decoration: none;" href="#Projects">
+          <div class="link"> <b> Projects </b> </div>
+        </a> </li>
+      <li> <a style="text-decoration: none;" href="#Work">
+          <div class="link"> <b> Work Experience </b> </div>
+        </a> </li>
+      <li> <a style="text-decoration: none;" href="#Extracurriculars">
+          <div class="link"> <b> Extracurriculars </b> </div>
+        </a> </li>
+      <li> <a style="text-decoration: none;" href="#References">
+          <div class="link"> <b> References </b> </div>
+        </a> </li>
+    </ul>
+  </div>
 
-  <footer id="contact">
-    <div class="container">
-      <p>&copy; 2023 My Personal Website</p>
-    </div>
-  </footer>
+  <svg version="1.1" id="blob" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <path id="blob-path" d="M60,500H0V0h60c0,0,20,172,20,250S60,900,60,500z" />
+  </svg>
+</div>
+
+<h2> zobie </h2>
+<!-- partial -->
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
+  <script src="script.js" defer></script>
+
 </body>
 </html>
